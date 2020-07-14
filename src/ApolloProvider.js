@@ -6,11 +6,10 @@ import { createHttpLink } from "apollo-link-http"
 import { ApolloProvider } from "@apollo/react-hooks"
 import { setContext } from "apollo-link-context"
 
+//let URI = process.env.NODE_ENV === "production" ? process.env.PRODUCTION_URI : process.env.DEVELOPMENT_URI
+
 const httpLink = createHttpLink({
   uri: "https://mentorcards.herokuapp.com/",
-  /* !process.env.NODE_ENV || process.env.NODE_ENV === "development"
-      ? process.env.DEVELOPMENT_URI
-      : process.env.PRODUCTION_URI, */
 })
 
 const authLink = setContext(() => {
