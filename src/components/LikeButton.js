@@ -21,16 +21,16 @@ function LikeButton({ user, quote: { id, likeCount, likes } }) {
 
   const likeButton = user ? (
     liked ? (
-      <Button color="teal">
+      <Button color="violet">
         <Icon name="heart" />
       </Button>
     ) : (
-      <Button color="teal" basic>
+      <Button color="violet" basic>
         <Icon name="heart" />
       </Button>
     )
   ) : (
-    <Button as={Link} to="/login" color="teal" basic>
+    <Button as={Link} to="/login" color="violet" basic>
       <Icon name="heart" />
     </Button>
   )
@@ -40,7 +40,7 @@ function LikeButton({ user, quote: { id, likeCount, likes } }) {
       <ToolTipWrap content={liked ? "Unlike" : "Like"}>
         {likeButton}
       </ToolTipWrap>
-      <Label basic color="teal" pointing="left">
+      <Label basic color="violet" pointing="left">
         {likeCount}
       </Label>
     </Button>

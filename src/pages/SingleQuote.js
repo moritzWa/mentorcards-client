@@ -82,10 +82,10 @@ function SingleQuote(props) {
                     labelPosition="right"
                     onClick={() => console.log("Comment on quote")}
                   >
-                    <Button basic color="blue">
+                    <Button basic color="green">
                       <Icon name="comments" />
                     </Button>
-                    <Label basic color="blue" pointing="left">
+                    <Label basic color="green" pointing="left">
                       {commentCount}
                     </Label>
                   </Button>
@@ -112,7 +112,7 @@ function SingleQuote(props) {
                       />
                       <button
                         type="submit"
-                        className="ui button teal"
+                        className="ui button violet"
                         disabled={comment.trim() === ""}
                         onClick={submitComment}
                       >

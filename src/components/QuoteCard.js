@@ -38,10 +38,10 @@ function QuoteCard({
         <LikeButton user={user} quote={{ id, likes, likeCount }} />
         <ToolTipWrap content="Comment on quote">
           <Button labelPosition="right" as={Link} to={`/quote/${id}`}>
-            <Button color="blue" basic>
+            <Button color="green" basic>
               <Icon name="comments" />
             </Button>
-            <Label basic color="blue" pointing="left">
+            <Label basic color="green" pointing="left">
               {commentCount}
             </Label>
           </Button>

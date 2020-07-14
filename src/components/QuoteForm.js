@@ -48,7 +48,7 @@ function QuoteForm() {
             value={values.body}
             error={error ? true : false}
           />
-          <Button type="submit" color="teal">
+          <Button type="submit" color="violet">
             Submit
           </Button>
         </Form.Field>
