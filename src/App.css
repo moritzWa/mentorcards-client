@@ -53,3 +53,11 @@ b {
 .ui.card .extra {
   transition-delay: 1s;
 }
+
+.ui-error-message {
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.2rem;
+  background-color: #fff6f6;
+  color: #9f3a38;
+}

@@ -1,6 +1,10 @@
 import React, { useReducer, createContext } from "react"
 import jwtDecode from "jwt-decode"
 
+//tried to/can't read property of resetStore
+//import { useMutation } from "@apollo/react-hooks"
+//import { LOGIN_USER } from "../util/graphql"
+
 const initialState = {
   user: null,
 }
@@ -39,6 +43,8 @@ function authReducer(state, action) {
 }
 
 function AuthProvider(props) {
+  //const { client } = useMutation(LOGIN_USER, { fetchPolicy: "network-only" })
+
   const [state, dispatch] = useReducer(authReducer, initialState)
 
   function login(userData) {
@@ -51,6 +57,7 @@ function AuthProvider(props) {
 
   function logout() {
     localStorage.removeItem("jwtToken")
+    //client.resetStore()
     dispatch({ type: "LOGOUT" })
   }
 

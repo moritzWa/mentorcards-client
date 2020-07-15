@@ -70,9 +70,9 @@ function SingleQuote(props) {
           <Grid.Column width={10}>
             <Card fluid>
               <Card.Content>
-                <Card.Header>{username}</Card.Header>
+                <Card.Header>{body}</Card.Header>
                 <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
-                <Card.Description>{body}</Card.Description>
+                <Card.Description>{username}</Card.Description>
               </Card.Content>
               <hr />
               <Card.Content extra>
@@ -130,9 +130,9 @@ function SingleQuote(props) {
                   {user && user.username === comment.username && (
                     <DeleteButton quoteId={id} commentId={comment.id} />
                   )}
-                  <Card.Header>{comment.username}</Card.Header>
+                  <Card.Header>{comment.body}</Card.Header>
                   <Card.Meta>{moment(comment.createdAt).fromNow()}</Card.Meta>
-                  <Card.Description>{comment.body}</Card.Description>
+                  <Card.Description>{comment.username}</Card.Description>
                 </Card.Content>
               </Card>
             ))}

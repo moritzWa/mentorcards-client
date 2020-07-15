@@ -10,7 +10,6 @@ function Register(props) {
   const context = useContext(AuthContext)
   const [errors, setErrors] = useState({})
 
-  // initialize form funtionaly through hook
   const { onChange, onSubmit, values } = useForm(registerUser, {
     username: "",
     email: "",
@@ -18,24 +17,21 @@ function Register(props) {
     confirmPassword: "",
   })
 
-  //https://www.apollographql.com/docs/react/data/mutations/
+  // prioritize mounting of addUser function
   const [addUser, { loading }] = useMutation(REGISTER_USER, {
-    //update triggered through onsubmit
     // -- pulling out data as userData
     update(_, { data: { register: userData } }) {
       context.login(userData)
       props.history.push("/")
     },
     onError(err) {
-      //pulling out error from apollo response object https://www.apollographql.com/docs/apollo-server/data/errors/
+      // https://www.apollographql.com/docs/apollo-server/data/errors/
       setErrors(err.graphQLErrors[0].extensions.exception.errors)
     },
-    //passing variables for mutaiton
     //username: values.username
     variables: values,
   })
 
-  // prioritize mounting of addUser function
   function registerUser() {
     addUser()
   }
@@ -85,7 +81,7 @@ function Register(props) {
         </Button>
       </Form>
       {Object.keys(errors).length > 0 && (
-        <div className="ui error message">
+        <div className="ui-error-message">
           <ul className="list">
             {Object.values(errors).map((value) => (
               <li key={value}>{value}</li>

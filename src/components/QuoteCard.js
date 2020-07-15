@@ -47,7 +47,8 @@ function QuoteCard({
          */}{" "}
         <ToolTipWrap content="Comment on quote">
           <Button labelPosition="right" as={Link} to={`/quotes/${id}`}>
-            {comments.find((comment) => comment.username === user.username) ? (
+            {user &&
+            comments.find((comment) => comment.username === user.username) ? (
               <Button color="green">
                 <Icon name="comments" />
               </Button>
