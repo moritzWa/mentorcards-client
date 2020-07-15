@@ -15,14 +15,15 @@ function QuoteForm() {
   const [createQuote, { error }] = useMutation(CREATE_QUOTE_MUTATION, {
     variables: values,
     update(proxy, result) {
-      //data = storage of responses /local cach state
+      //data = storage of responses /local cache state
       const data = proxy.readQuery({
         query: FETCH_QUOTES_QUERY,
       })
       const newQuote = result.data.createQuote
+
       proxy.writeQuery({
         query: FETCH_QUOTES_QUERY,
-        //pushing newQuote (of createQuote-mutation ) into cach
+        //pushing newQuote (of createQuote-mutation ) into cache
         data: { getQuotes: [newQuote, ...data.getQuotes] },
       })
       values.body = ""

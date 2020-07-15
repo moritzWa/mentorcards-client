@@ -62,7 +62,7 @@ function SingleQuote(props) {
         <Grid.Row>
           <Grid.Column width={2}>
             <Image
-              src="https://react.semantic-ui.com/images/avatar/large/molly.png"
+              src="https://image.flaticon.com/icons/svg/747/747376.svg" //TODO add user img in schema
               size="small"
               float="right"
             />
@@ -100,7 +100,7 @@ function SingleQuote(props) {
             {user && (
               <Card fluid>
                 <Card.Content>
-                  <p>Quote a comment</p>
+                  <p>Write a comment</p>
                   <Form>
                     <div className="ui action input fluid">
                       <input

@@ -20,7 +20,7 @@ b {
 
 .ui.card > .content a:not(.ui),
 .ui.cards > .card > .content a:not(.ui) {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .form-container {
