@@ -9,7 +9,16 @@ import DeleteButton from "./DeleteButton"
 import ToolTipWrap from "../util/ToolTipWrap"
 
 function QuoteCard({
-  quote: { body, createdAt, id, username, likeCount, commentCount, likes },
+  quote: {
+    body,
+    createdAt,
+    id,
+    username,
+    likeCount,
+    comments,
+    commentCount,
+    likes,
+  },
 }) {
   const { user } = useContext(AuthContext)
 
@@ -27,24 +36,32 @@ function QuoteCard({
           {body}
           <b>”</b>
         </Header>
+      </Card.Content>
+      <Card.Content extra>
         <Card.Description>
           added by<Link to={`/users/${username}`}>{username}</Link> {" - "}{" "}
           {moment(createdAt).fromNow(true)}
         </Card.Description>
-      </Card.Content>
-      <Card.Content extra>
         <LikeButton user={user} quote={{ id, likes, likeCount }} />
+        {/*         //todo into its own component
+         */}{" "}
         <ToolTipWrap content="Comment on quote">
-          <Button labelPosition="right" as={Link} to={`/quote/${id}`}>
-            <Button color="green" basic>
-              <Icon name="comments" />
-            </Button>
+          <Button labelPosition="right" as={Link} to={`/quotes/${id}`}>
+            {comments.find((comment) => comment.username === user.username) ? (
+              <Button color="green">
+                <Icon name="comments" />
+              </Button>
+            ) : (
+              <Button color="green" basic>
+                <Icon name="comments" />
+              </Button>
+            )}
+
             <Label basic color="green" pointing="left">
               {commentCount}
             </Label>
           </Button>
         </ToolTipWrap>
-
         {user && user.username === username && <DeleteButton quoteId={id} />}
       </Card.Content>
     </Card>

@@ -32,3 +32,24 @@ b {
 .ui.Violet.buttons .button:focus {
   background-color: #5b51b4;
 }
+
+.ui.card > .content > .description,
+.ui.cards > .card > .content > .description {
+  padding: 0.5rem 0rem;
+}
+
+.ui.card > .extra,
+.ui.cards > .card > .extra {
+  display: none;
+  transition-delay: 1s;
+}
+
+.ui.card:hover > .extra,
+.ui.cards > .card > .extra {
+  display: block;
+  transition-delay: 1s;
+}
+
+.ui.card .extra {
+  transition-delay: 1s;
+}
