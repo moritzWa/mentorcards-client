@@ -3,6 +3,8 @@ import { Button, Form } from "semantic-ui-react"
 import { useMutation } from "@apollo/react-hooks"
 import gql from "graphql-tag"
 
+import { Link } from "react-router-dom"
+
 import { AuthContext } from "../context/auth"
 import { useForm } from "../util/hooks"
 
@@ -76,8 +78,12 @@ function Register(props) {
           error={errors.confirmPassword ? true : false}
           onChange={onChange}
         />
+
+        <Button as={Link} to="/login" secondary>
+          Sign in here
+        </Button>
         <Button type="submit" primary>
-          Register
+          Register now
         </Button>
       </Form>
       {Object.keys(errors).length > 0 && (

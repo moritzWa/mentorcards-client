@@ -29,7 +29,7 @@ function QuoteCard({
           as={Link}
           to={`/quotes/${id}`} //link to author
           wrapped
-          src="https://www.skmurphy.com/wp-content/uploads/2017/11/kkNavalRavikant110222-e1530507117593.jpg"
+          src="https://www.skmurphy.com/wp-content/uploads/2017/11/kkNavalRavikant110222-e1530507117593.jpg" //author img url
         />
         <Header as={Link} to={`/quotes/${id}`} className="quote-text">
           <b>“</b>
@@ -39,7 +39,7 @@ function QuoteCard({
       </Card.Content>
       <Card.Content extra>
         <Card.Description>
-          added by<Link to={`/users/${username}`}>{username}</Link> {" - "}{" "}
+          added by<Link to={`/users/${username}`}>{username}</Link> &bull;
           {moment(createdAt).fromNow(true)}
         </Card.Description>
         <LikeButton user={user} quote={{ id, likes, likeCount }} />

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react"
-import { Menu } from "semantic-ui-react"
+import { Menu, Image } from "semantic-ui-react"
 import { Link } from "react-router-dom"
+import logo from "./mentorcards-logo.png"
 
 import { AuthContext } from "../context/auth"
 
@@ -14,43 +15,50 @@ const MenuBarTop = () => {
 
   const handleItemClick = (e, { name }) => setActiveItem(name)
 
-  const menuBar = user ? (
-    <Menu pointing secondary size="massive" color="violet">
-      <Menu.Item name={user.username} active as={Link} to="/" />
+  return (
+    <div className="menuWithLogo">
+      {user ? (
+        <Menu pointing secondary size="massive" color="violet">
+          <Menu.Item as={Link} to="/" active={activeItem === "home"}>
+            <Image src={logo} className="logo"></Image>
+          </Menu.Item>
 
-      <Menu.Menu position="right">
-        <Menu.Item name="logout" onClick={logout} />
-      </Menu.Menu>
-    </Menu>
-  ) : (
-    <Menu pointing secondary size="massive" color="green">
-      <Menu.Item
-        name="home"
-        active={activeItem === "home"}
-        onClick={handleItemClick}
-        as={Link}
-        to="/"
-      />
-      <Menu.Menu position="right">
-        <Menu.Item
-          name="login"
-          active={activeItem === "login"}
-          onClick={handleItemClick}
-          as={Link}
-          to="/login"
-        />
-        <Menu.Item
-          name="register"
-          active={activeItem === "register"}
-          onClick={handleItemClick}
-          as={Link}
-          to="/register"
-        />
-      </Menu.Menu>
-    </Menu>
+          <Menu.Menu position="right">
+            <Menu.Item
+              name={user.username}
+              active={activeItem === "user"}
+              as={Link}
+              to="/user"
+            />
+
+            <Menu.Item name="logout" onClick={logout} />
+          </Menu.Menu>
+        </Menu>
+      ) : (
+        <Menu pointing secondary size="massive" color="green">
+          <Menu.Item as={Link} to="/" active={activeItem === "home"}>
+            <Image src={logo} className="logo"></Image>
+          </Menu.Item>
+          <Menu.Menu position="right">
+            <Menu.Item
+              name="login"
+              active={activeItem === "login"}
+              onClick={handleItemClick}
+              as={Link}
+              to="/login"
+            />
+            <Menu.Item
+              name="register"
+              active={activeItem === "register"}
+              onClick={handleItemClick}
+              as={Link}
+              to="/register"
+            />
+          </Menu.Menu>
+        </Menu>
+      )}
+    </div>
   )
-
-  return menuBar
 }
 
 export default MenuBarTop
