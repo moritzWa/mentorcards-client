@@ -36,6 +36,18 @@ b {
   background-color: #4fc96ca8;
 }
 
+.ui.labeled.button:not([class*="left labeled"]) > .label {
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.ui.labeled.button:not([class*="left labeled"]) > .button {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+/* card arrangement */
+
 .ui.card > .content a:not(.ui),
 .ui.cards > .card > .content a:not(.ui) {
   margin-left: 5px;
@@ -64,7 +76,9 @@ b {
   padding: 0.5rem 0rem;
 }
 
-/* .ui.card > .extra,
+/* show extra on hover */
+
+.ui.card > .extra,
 .ui.cards > .card > .extra {
   display: none;
   transition-delay: 1s;
@@ -74,9 +88,9 @@ b {
 .ui.cards > .card > .extra {
   display: block;
   transition-delay: 1s;
-} */
+}
 
-.ui.card .extra {
+.ui.card .extra:after {
   transition-delay: 1s;
 }
 
