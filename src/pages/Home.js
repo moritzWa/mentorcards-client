@@ -5,6 +5,9 @@ import { Grid, Transition } from "semantic-ui-react"
 import { AuthContext } from "../context/auth"
 import QuoteCard from "../components/QuoteCard"
 import QuoteForm from "../components/QuoteForm"
+
+import CardsLoader from "../util/cardsLoader"
+
 import { FETCH_QUOTES_QUERY } from "../util/graphql"
 
 function Home() {
@@ -31,7 +34,7 @@ function Home() {
           </Grid.Column>
         )}
         {loading ? (
-          <h1>Loading quotes..</h1>
+          <CardsLoader />
         ) : (
           <Transition.Group>
             {quotes &&

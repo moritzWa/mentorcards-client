@@ -4,6 +4,8 @@ import { useQuery, useMutation } from "@apollo/react-hooks"
 import moment from "moment"
 import { Button, Card, Grid, Form, Image, Icon, Label } from "semantic-ui-react"
 
+import SingleQuoteLoader from "../util/singleQuoteLoader"
+
 import { AuthContext } from "../context/auth"
 
 import LikeButton from "../components/LikeButton"
@@ -43,7 +45,7 @@ function SingleQuote(props) {
 
   let quoteMarkup
   if (!getQuote || loading) {
-    quoteMarkup = <p>Loading quote..</p>
+    quoteMarkup = <SingleQuoteLoader />
   } else {
     const { getQuote } = data
     const {
@@ -58,87 +60,90 @@ function SingleQuote(props) {
     } = getQuote
 
     quoteMarkup = (
-      <Grid>
-        <Grid.Row>
-          <Grid.Column width={2}>
-            <Image
-              src="https://image.flaticon.com/icons/svg/747/747376.svg" //TODO add user img in schema
-              size="small"
-              float="right"
-            />
-          </Grid.Column>
-          <Grid.Column width={10}>
-            <Card fluid>
-              <Card.Content>
-                <Card.Header>{body}</Card.Header>
-                <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
-                <Card.Description>{username}</Card.Description>
-              </Card.Content>
-              <hr />
-              <Card.Content extra>
-                <LikeButton user={user} quote={{ id, likeCount, likes }} />
-                <ToolTipWrap content="Comment on quote">
-                  <Button
-                    as="div"
-                    labelPosition="right"
-                    onClick={() => console.log("Comment on quote")}
-                  >
-                    <Button basic color="green">
-                      <Icon name="comments" />
-                    </Button>
-                    <Label basic color="green" pointing="left">
-                      {commentCount}
-                    </Label>
-                  </Button>
-                </ToolTipWrap>
-
-                {user && user.username === username && (
-                  <DeleteButton quoteId={id} callback={deleteQuoteCallback} />
-                )}
-              </Card.Content>
-            </Card>
-            {user && (
+      <>
+        <br></br>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column width={2}>
+              <Image
+                src="https://image.flaticon.com/icons/svg/747/747376.svg" //TODO add user img in schema
+                size="small"
+                float="right"
+              />
+            </Grid.Column>
+            <Grid.Column width={10}>
               <Card fluid>
                 <Card.Content>
-                  <p>Write a comment</p>
-                  <Form>
-                    <div className="ui action input fluid">
-                      <input
-                        type="text"
-                        placeholder="Comment.."
-                        name="comment"
-                        value={comment}
-                        onChange={(event) => setComment(event.target.value)}
-                        ref={commentInputRef}
-                      />
-                      <button
-                        type="submit"
-                        className="ui button violet"
-                        disabled={comment.trim() === ""}
-                        onClick={submitComment}
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </Form>
+                  <Card.Header>{body}</Card.Header>
+                  <Card.Meta>{moment(createdAt).fromNow()}</Card.Meta>
+                  <Card.Description>{username}</Card.Description>
                 </Card.Content>
-              </Card>
-            )}
-            {comments.map((comment) => (
-              <Card fluid key={comment.id}>
-                <Card.Content>
-                  {user && user.username === comment.username && (
-                    <DeleteButton quoteId={id} commentId={comment.id} />
+                <hr />
+                <Card.Content extra>
+                  <LikeButton user={user} quote={{ id, likeCount, likes }} />
+                  <ToolTipWrap content="Comment on quote">
+                    <Button
+                      as="div"
+                      labelPosition="right"
+                      onClick={() => console.log("Comment on quote")}
+                    >
+                      <Button basic color="green">
+                        <Icon name="comments" />
+                      </Button>
+                      <Label basic color="green" pointing="left">
+                        {commentCount}
+                      </Label>
+                    </Button>
+                  </ToolTipWrap>
+
+                  {user && user.username === username && (
+                    <DeleteButton quoteId={id} callback={deleteQuoteCallback} />
                   )}
-                  <Card.Header>{comment.body}</Card.Header>
-                  <Card.Meta>{moment(comment.createdAt).fromNow()}</Card.Meta>
-                  <Card.Description>{comment.username}</Card.Description>
                 </Card.Content>
               </Card>
-            ))}
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+              {user && (
+                <Card fluid>
+                  <Card.Content>
+                    <p>Write a comment</p>
+                    <Form>
+                      <div className="ui action input fluid">
+                        <input
+                          type="text"
+                          placeholder="Comment.."
+                          name="comment"
+                          value={comment}
+                          onChange={(event) => setComment(event.target.value)}
+                          ref={commentInputRef}
+                        />
+                        <button
+                          type="submit"
+                          className="ui button violet"
+                          disabled={comment.trim() === ""}
+                          onClick={submitComment}
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </Form>
+                  </Card.Content>
+                </Card>
+              )}
+              {comments.map((comment) => (
+                <Card fluid key={comment.id}>
+                  <Card.Content>
+                    {user && user.username === comment.username && (
+                      <DeleteButton quoteId={id} commentId={comment.id} />
+                    )}
+                    <Card.Header>{comment.body}</Card.Header>
+                    <Card.Meta>{moment(comment.createdAt).fromNow()}</Card.Meta>
+                    <Card.Description>{comment.username}</Card.Description>
+                  </Card.Content>
+                </Card>
+              ))}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </>
     )
   }
   return quoteMarkup
