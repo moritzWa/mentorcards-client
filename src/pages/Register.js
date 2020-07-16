@@ -82,7 +82,7 @@ function Register(props) {
         <Button as={Link} to="/login" secondary>
           Sign in here
         </Button>
-        <Button type="submit" primary>
+        <Button type="submit" className="formButtonRight" primary>
           Register now
         </Button>
       </Form>

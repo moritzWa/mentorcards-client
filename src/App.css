@@ -27,14 +27,12 @@ b {
 .ui.primary.button,
 .ui.primary.buttons .button {
   color: #2719a1;
-
   background-color: #6b60caa6;
 }
 
 .ui.secondary.button,
 .ui.secondary.buttons .button {
   color: #136326;
-
   background-color: #4fc96ca8;
 }
 
@@ -43,9 +41,15 @@ b {
   margin-left: 5px;
 }
 
+/* signup/login formr */
+
 .form-container {
   width: 400px;
   margin: 5rem auto;
+}
+
+.formButtonRight {
+  float: right;
 }
 
 /* quote card */
