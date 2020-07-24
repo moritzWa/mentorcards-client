@@ -1,5 +1,5 @@
 import React from "react"
-import { Button, Form } from "semantic-ui-react"
+import { Button, Form, TextArea } from "semantic-ui-react"
 import gql from "graphql-tag"
 import { useMutation } from "@apollo/react-hooks"
 
@@ -42,7 +42,8 @@ function QuoteForm() {
       <Form onSubmit={onSubmit}>
         <h2>Create a quote:</h2>
         <Form.Field>
-          <Form.Input
+          <TextArea
+            rows={3}
             placeholder="One way to remember who..."
             name="body"
             onChange={onChange}

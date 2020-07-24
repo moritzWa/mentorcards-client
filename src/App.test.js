@@ -1,5 +1,6 @@
-import React from "react"
-import { render } from "@testing-library/react"
+import { act, fireEvent, render } from "@testing-library/react"
+import { MockedProvider } from "@apollo/react-testing"
+
 import Home from "./pages/Home"
 
 test("renders home headers", () => {

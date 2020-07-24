@@ -119,3 +119,9 @@ b {
 .logo {
   height: 3rem;
 }
+
+/* quote form */
+
+.ui.form textarea {
+  margin-bottom: 1rem;
+}
