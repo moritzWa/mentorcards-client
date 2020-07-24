@@ -9,7 +9,8 @@ import { setContext } from "apollo-link-context"
 //let URI = process.env.NODE_ENV === "production" ? process.env.PRODUCTION_URI : process.env.DEVELOPMENT_URI
 
 const httpLink = createHttpLink({
-  uri: "https://mentorcards.herokuapp.com/",
+  //uri: "https://mentorcards.herokuapp.com/",
+  uri: "http://localhost:5000/",
 })
 
 const authLink = setContext(() => {
@@ -30,26 +31,4 @@ export default (
   <ApolloProvider client={client}>
     <App />
   </ApolloProvider>
-)
-
-import { ApolloProvider } from "@apollo/react-common"
-import ApolloClient, { InMemoryCache } from "apollo-boost"
-import API_BASE_URL, { ACCESS_TOKEN } from "js/constants/api"
-const client = new ApolloClient({
-  uri: `${API_BASE_URL}/graphql`,
-  cache: new InMemoryCache(),
-  request: (operation) => {
-    const token = localStorage.getItem(ACCESS_TOKEN)
-    operation.setContext({
-      headers: {
-        Authorization: token ? `Bearer ${token}` : "",
-      },
-    })
-  },
-})
-ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
-  document.getElementById("root")
 )

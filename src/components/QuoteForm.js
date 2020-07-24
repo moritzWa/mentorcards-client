@@ -9,6 +9,7 @@ import { FETCH_QUOTES_QUERY } from "../util/graphql"
 function QuoteForm() {
   const { values, onChange, onSubmit } = useForm(createQuoteCallback, {
     body: "",
+    mentorRefId: "",
   })
 
   //only one type of error
@@ -19,6 +20,7 @@ function QuoteForm() {
       const data = proxy.readQuery({
         query: FETCH_QUOTES_QUERY,
       })
+      console.log(data)
       const newQuote = result.data.createQuote
 
       proxy.writeQuery({
@@ -27,9 +29,10 @@ function QuoteForm() {
         data: { getQuotes: [newQuote, ...data.getQuotes] },
       })
       values.body = ""
+      values.mentorRefId = null
     },
     onError(err) {
-      console.log(err)
+      console.log(err.value)
     },
   })
 
@@ -41,13 +44,21 @@ function QuoteForm() {
     <>
       <Form onSubmit={onSubmit}>
         <h2>Create a quote:</h2>
+        <Form.Field></Form.Field>
         <Form.Field>
           <TextArea
             rows={3}
-            placeholder="One way to remember who..."
+            placeholder="Quote ex: One way to remember who..."
             name="body"
             onChange={onChange}
             value={values.body}
+            error={error ? true : false}
+          />
+          <Form.Input
+            placeholder="Mentor Name ex: Albert Einstein"
+            name="mentorRefId"
+            onChange={onChange}
+            value={values.mentorRefId}
             error={error ? true : false}
           />
           <Button type="submit" color="violet">
@@ -67,10 +78,11 @@ function QuoteForm() {
 }
 
 const CREATE_QUOTE_MUTATION = gql`
-  mutation createQuote($body: String!) {
-    createQuote(body: $body) {
+  mutation createQuote($body: String!, $mentorRefId: ID!) {
+    createQuote(body: $body, mentorRefId: $mentorRefId) {
       id
       body
+      mentorRefId
       createdAt
       username
       likes {
